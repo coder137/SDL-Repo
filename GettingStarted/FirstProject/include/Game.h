@@ -18,8 +18,10 @@ public:
     Game();
     ~Game();
 
-    init_response_t init(const char * title, int x, int y, int w, int h, uint32_t flags);
-    void clean();
+    init_response_t Init(const char * title);
+    init_response_t Init(const char * title, int x, int y, int w, int h, uint32_t flags);
+    
+    void Clean();
 private:
     SDL_Window * m_pWindow;
 };

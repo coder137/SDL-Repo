@@ -10,7 +10,7 @@ Game::~Game()
     cout << "Game class `Destroyed`" << endl;
 }
 
-init_response_t Game::init(const char * title, int x, int y, int w, int h, uint32_t flags)
+init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint32_t flags)
 {
     int init = SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -25,7 +25,16 @@ init_response_t Game::init(const char * title, int x, int y, int w, int h, uint3
     SDL_Delay(5000);
 }
 
-void Game::clean()
+init_response_t Game::Init(const char * title)
+{
+    return Init(title, 
+                SDL_WINDOWPOS_UNDEFINED,
+                SDL_WINDOWPOS_UNDEFINED,
+                640, 480,
+                SDL_WINDOW_RESIZABLE);
+}
+
+void Game::Clean()
 {
     cout << "Cleaning resources" << endl;
     SDL_DestroyWindow(m_pWindow);
