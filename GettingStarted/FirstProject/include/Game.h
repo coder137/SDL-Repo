@@ -22,8 +22,18 @@ public:
     init_response_t Init(const char * title, int x, int y, int w, int h, uint32_t flags);
     
     void Clean();
+
+    void Render();
+    void Update();
+    void HandleEvents();
+    
+    bool IsRunning() {  return m_bRunning; }
+    void ErrorLog() {  cout << "Error: " << SDL_GetError() << endl; }
 private:
+    bool m_bRunning;
+    
     SDL_Window * m_pWindow;
+    SDL_Renderer * m_pRenderer;
 };
 
 #endif
