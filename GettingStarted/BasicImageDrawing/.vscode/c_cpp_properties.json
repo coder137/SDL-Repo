@@ -7,7 +7,8 @@
                 "${workspaceFolder}",
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/src",
-                "C:/sdl/include/SDL2"
+                "C:/sdl/include/SDL2",
+                "C:/sdl/sdl_image/include/SDL2"
             ],
             "defines": [
                 "_DEBUG",
@@ -19,7 +20,8 @@
                     "${workspaceFolder}",
                     "${workspaceFolder}/include/**",
                     "${workspaceFolder}/src/**",
-                    "C:/sdl/include/SDL2"
+                    "C:/sdl/include/SDL2",
+                    "C:/sdl/sdl_image/include/SDL2"
                 ]
             },
             "compilerPath": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\gcc.exe",

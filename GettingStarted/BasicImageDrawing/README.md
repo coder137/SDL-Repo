@@ -9,7 +9,9 @@ Implementing generic methods
 - Update [TODO]
 - HandleEvent
 
-## [IMP] Inside SDL Includes file
+# IMP
+
+## [1] Inside SDL Includes file
 
 **SDL_stdinc.h: Line 260**
 ``` cpp
@@ -25,7 +27,32 @@ Implementing generic methods
 
 This makes sure that sal.h does not keep throwing an error in VSCode
 
-# [API] FirstProject
+## [2] Installing additional libraries like `SDL_image` using CMAKE
+
+Example taken `SDL_image`
+
+- Download the **Development Libraries** -> **SDL2_image-devel-mingw** (name can change)
+- Copy the **32 bit version** and add it to the folder of your choice
+    - `C:/sdl/sdl_image`
+- Set the include directory path
+    - `C:/sdl/sdl_image/include/SDL2`
+- Set the library path
+    - `C:/sdl/sdl_image/lib`
+- Modify **SDL_LIBRARIES**
+    - `"-L${SDL2_LIB_DIR} -L${SDL2_IMAGE_LIB_DIR} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image"`
+- add **Include directory**
+    - `include_directories(${SDL2_IMAGE_INCLUDE_DIR})`
+- Update **.vscode/c_cpp_properties**
+- Make sure you copy all the DLLs present inside `C:/sdl/sdl_image/bin` near your .exe file OR add it to path
+
+# [API] BasicImageDrawing
+
+- [x] Loading a BMP Image
+- [ ] Animating a BMP Image Frame
+- [ ] Flipping Images
+- [x] Installing [`SDL_Image`](https://www.libsdl.org/projects/SDL_image/) library
+- [x] Using `SDL_Image` library
+- [ ] Writing a TextureManager Class
 
 ## [LEARNT] Structures and Definitions
 
@@ -40,3 +67,8 @@ This makes sure that sal.h does not keep throwing an error in VSCode
 - [`SDL_FreeSurface`](http://wiki.libsdl.org/SDL_FreeSurface?highlight=%28%5CbCategoryAPI%5Cb%29%7C%28SDLFunctionTemplate%29)
 - [`SDL_QueryTexture`](http://wiki.libsdl.org/SDL_QueryTexture?highlight=%28%5CbCategoryAPI%5Cb%29%7C%28SDLFunctionTemplate%29)
 - [`SDL_RenderCopy`](http://wiki.libsdl.org/SDL_RenderCopy?highlight=%28%5CbCategoryAPI%5Cb%29%7C%28SDLFunctionTemplate%29)
+- `SDL_GetTicks`
+
+## [SDL_image] Functions
+
+- `IMG_Load`

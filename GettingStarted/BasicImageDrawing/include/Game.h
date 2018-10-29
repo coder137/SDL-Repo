@@ -2,6 +2,7 @@
 #define _Game_H
 
 #include <SDL.h>
+#include <SDL_image.h>
 #include "IncludeNamespace.h"
 
 typedef enum {
