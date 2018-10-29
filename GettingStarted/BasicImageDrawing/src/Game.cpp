@@ -36,11 +36,30 @@ init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint3
         return SDL_RENDERER_FAILED;
     }
 
-    SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
-    SDL_RenderClear(m_pRenderer);
+    // SDL_RenderClear(m_pRenderer);
 
-    SDL_RenderPresent(m_pRenderer);
+    // SDL_RenderPresent(m_pRenderer);
+
+    // * Load the SDL_Surface and convert it to Texture
+    SDL_Surface * pTempSurface = SDL_LoadBMP("assets/VENUS.BMP");
+    m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
+    SDL_FreeSurface(pTempSurface);
+
+    if (m_pTexture == NULL)
+    {
+        // TODO, Do something
+    }
+
+    // * Query the texture
+    SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
+
+    // * Set the destination and source
+    m_destinationRectangle.x = m_sourceRectangle.x = 0;
+    m_destinationRectangle.y = m_sourceRectangle.y = 0;
+    m_destinationRectangle.w = m_sourceRectangle.w;
+    m_destinationRectangle.h = m_sourceRectangle.h;
 
     m_bRunning = true;
 
@@ -67,6 +86,9 @@ void Game::Clean()
 void Game::Render()
 {
     SDL_RenderClear(m_pRenderer);
+
+    // * Render the image here
+    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
 
     SDL_RenderPresent(m_pRenderer);
 }
