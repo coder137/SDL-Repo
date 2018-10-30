@@ -56,18 +56,20 @@ init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint3
     SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
 
     // ! Setting this explicitly
-    m_sourceRectangle.w = 256; //32, 64, 96
-    // m_sourceRectangle.h = 81-44;
+    // m_sourceRectangle.w = 256; //32, 64, 96
+    // // m_sourceRectangle.h = 81-44;
 
-    // * Set the destination and source
-    m_destinationRectangle.x = m_sourceRectangle.x = 0;
-    m_destinationRectangle.y = m_sourceRectangle.y = 0;
-    m_destinationRectangle.w = m_sourceRectangle.w;
-    m_destinationRectangle.h = m_sourceRectangle.h;
+    // // * Set the destination and source
+    // m_destinationRectangle.x = m_sourceRectangle.x = 0;
+    // m_destinationRectangle.y = m_sourceRectangle.y = 0;
+    // m_destinationRectangle.w = m_sourceRectangle.w;
+    // m_destinationRectangle.h = m_sourceRectangle.h;
 
-    // ! Rendered at position (x, y)
-    m_destinationRectangle.x = 100;
-    m_destinationRectangle.y = 100;
+    // // ! Rendered at position (x, y)
+    // m_destinationRectangle.x = 100;
+    // m_destinationRectangle.y = 100;
+
+    m_textureManager.load("assets/vamp-256_256.png", "animate", m_pRenderer);
 
     m_bRunning = true;
 
@@ -96,8 +98,12 @@ void Game::Render()
     SDL_RenderClear(m_pRenderer);
 
     // * Render the image here
-    SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    // SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
     // SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, NULL);
+
+    m_textureManager.draw("animate", 0, 0, 256, 256, m_pRenderer);
+
+    m_textureManager.drawFrame("animate", 200, 200, 256, 256, 1, m_currentFrame, m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer);
 }
@@ -105,8 +111,8 @@ void Game::Render()
 void Game::Update()
 {
     int no = ( SDL_GetTicks()/500 ) % 4; 
-    m_sourceRectangle.x = 256 * no;
-    cout << m_sourceRectangle.x << " " << no << endl;
+    m_currentFrame = no;
+    cout << m_currentFrame << endl;
 }
 
 void Game::HandleEvents()

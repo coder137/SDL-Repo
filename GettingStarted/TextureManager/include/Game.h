@@ -3,7 +3,9 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+
 #include "IncludeNamespace.h"
+#include "TextureManager.h"
 
 typedef enum {
     SDL_INIT_FAILED,
@@ -39,6 +41,9 @@ private:
     SDL_Texture * m_pTexture;
     SDL_Rect m_sourceRectangle;
     SDL_Rect m_destinationRectangle;
+
+    int m_currentFrame;
+    TextureManager m_textureManager;
 };
 
 #endif
