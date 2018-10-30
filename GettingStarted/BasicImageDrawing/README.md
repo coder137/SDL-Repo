@@ -6,8 +6,10 @@ Implementing generic methods
 - Init
 - Clean
 - Render
-- Update [TODO]
+- Update
 - HandleEvent
+
+Art created using [PiskelApp](https://www.piskelapp.com/)
 
 # IMP
 
@@ -45,10 +47,24 @@ Example taken `SDL_image`
 - Update **.vscode/c_cpp_properties**
 - Make sure you copy all the DLLs present inside `C:/sdl/sdl_image/bin` near your .exe file OR add it to path
 
+## [3] Difference between `m_sourceRectangle` and `m_destinationRectangle`
+
+**Basic Information**
+- `m_sourceRectangle` is the data of the image itself
+- `m_destinationRectangle` is the destination of the image data rendered onto the screen
+
+**m_sourceRectangle**
+- `m_sourceRectangle.w` and `m_sourceRectangle.h` set the width and height of the image explicitly
+- `m_sourceRectangle.x` and `m_sourceRectangle.y` sets the point from which the data is looked at (default 0,0) (top left)
+
+**m_destinationRectangle**
+- `m_destinationRectangle.w` and `m_destinationRectangle.h` can be set the `m_sourceRectangle` since they are usually the same
+- `m_destinationRectangle.x` and `m_destinationRectangle.y` can be set to a point that is rendered onto the screen (default 0,0) (top left)
+
 # [API] BasicImageDrawing
 
 - [x] Loading a BMP Image
-- [ ] Animating a BMP Image Frame
+- [x] Animating a Image Frame
 - [ ] Flipping Images
 - [x] Installing [`SDL_Image`](https://www.libsdl.org/projects/SDL_image/) library
 - [x] Using `SDL_Image` library

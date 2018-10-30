@@ -36,15 +36,14 @@ init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint3
         return SDL_RENDERER_FAILED;
     }
 
-    SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
     // SDL_RenderClear(m_pRenderer);
-
     // SDL_RenderPresent(m_pRenderer);
 
     // * Load the SDL_Surface and convert it to Texture
     // SDL_Surface * pTempSurface = SDL_LoadBMP("assets/VENUS.BMP");
-    SDL_Surface * pTempSurface = IMG_Load("assets/arc2.png");
+    SDL_Surface * pTempSurface = IMG_Load("assets/vamp-256_256.png");
     m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
     SDL_FreeSurface(pTempSurface);
 
@@ -56,14 +55,19 @@ init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint3
     // * Query the texture
     SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
 
-    // m_sourceRectangle.w = 35;
-    // m_sourceRectangle.h = 43;
+    // ! Setting this explicitly
+    m_sourceRectangle.w = 256; //32, 64, 96
+    // m_sourceRectangle.h = 81-44;
 
     // * Set the destination and source
     m_destinationRectangle.x = m_sourceRectangle.x = 0;
     m_destinationRectangle.y = m_sourceRectangle.y = 0;
     m_destinationRectangle.w = m_sourceRectangle.w;
     m_destinationRectangle.h = m_sourceRectangle.h;
+
+    // ! Rendered at position (x, y)
+    m_destinationRectangle.x = 100;
+    m_destinationRectangle.y = 100;
 
     m_bRunning = true;
 
@@ -100,7 +104,9 @@ void Game::Render()
 
 void Game::Update()
 {
-    cout << SDL_GetTicks() << endl;
+    int no = ( SDL_GetTicks()/500 ) % 4; 
+    m_sourceRectangle.x = 256 * no;
+    cout << m_sourceRectangle.x << " " << no << endl;
 }
 
 void Game::HandleEvents()
