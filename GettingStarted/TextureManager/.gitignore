@@ -1,0 +1,8 @@
+# Files
+SDL2.dll
+*.ninja
+
+settings.json
+
+# Folder
+build/
