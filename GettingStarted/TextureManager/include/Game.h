@@ -11,6 +11,7 @@ typedef enum {
     SDL_INIT_FAILED,
     SDL_WINDOW_CREATION_FAILED,
     SDL_RENDERER_FAILED,
+    SDL_TEXTURE_MANAGER_FAILED,
 
     SDL_INIT_SUCCESS
 } init_response_t;
@@ -43,7 +44,7 @@ private:
     SDL_Rect m_destinationRectangle;
 
     int m_currentFrame;
-    TextureManager m_textureManager;
+    // TextureManager m_textureManager;
 };
 
 #endif

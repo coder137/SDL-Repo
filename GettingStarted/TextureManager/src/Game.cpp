@@ -69,7 +69,13 @@ init_response_t Game::Init(const char * title, int x, int y, int w, int h, uint3
     // m_destinationRectangle.x = 100;
     // m_destinationRectangle.y = 100;
 
-    m_textureManager.load("assets/vamp-256_256.png", "animate", m_pRenderer);
+    // m_textureManager.load("assets/vamp-256_256.png", "animate", m_pRenderer);
+    bool isLoaded = TextureManager::Instance()->load("assets/vamp-256_256.png", "animate", m_pRenderer);
+
+    if(!isLoaded)
+    {
+        return SDL_TEXTURE_MANAGER_FAILED;
+    }
 
     m_bRunning = true;
 
@@ -101,9 +107,13 @@ void Game::Render()
     // SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
     // SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, NULL);
 
-    m_textureManager.draw("animate", 0, 0, 256, 256, m_pRenderer);
+    // m_textureManager.draw("animate", 0, 0, 256, 256, m_pRenderer);
 
-    m_textureManager.drawFrame("animate", 200, 200, 256, 256, 1, m_currentFrame, m_pRenderer);
+    // m_textureManager.drawFrame("animate", 200, 200, 256, 256, 1, m_currentFrame, m_pRenderer);
+
+    TextureManager::Instance()->draw("animate", 0, 0, 256, 256, m_pRenderer);
+
+    TextureManager::Instance()->drawFrame("animate", 200, 200, 256, 256, 1, m_currentFrame, m_pRenderer);
 
     SDL_RenderPresent(m_pRenderer);
 }
