@@ -1,0 +1,10 @@
+# Folder
+
+## codeblocks generated files
+obj
+bin
+
+# Files
+*.depend
+*.layout
+settings.json
