@@ -16,8 +16,14 @@ SDL Code examples
     - SDL configuration with Codeblocks IDE
     - Project created from within Codeblocks
 
-### Getting Started
+### Getting Started (VSCODE)
+
+**NOTE:: Make sure you have the _SDL2.dll_ file where you build your _.exe_ files**
 
 - FirstProject
     - Create a simple `Game` class
     - This can be used as a base upon which other projects are built and developed
+- BasicImageDrawing
+    - Using Simple `BMP` (Bitmap) images to load onto the screen
+- TextureManager
+    - To easily load and draw textures onto the screen
